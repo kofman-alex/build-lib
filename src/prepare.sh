@@ -22,11 +22,6 @@ if [ -n "${CC_REPO_DIR}" ]; then
   mv -f "$chaincode_files" "${CC_REPO_DIR}"
 fi
 
-# if the deploy_config JSON passed as environment, override the corresponding file in the chaincode dir
-if [ -n "${DEPLOY_CONFIG}" ]; then
-  jq -n "${DEPLOY_CONFIG}" |tee ${CONFIGPATH}
-fi
-
 if [ -n "${BUILD_LIB_URL}" ]; then
   echo "=> Downloading Blockchain Build Libraries..."
   # download blockchain-build-lib

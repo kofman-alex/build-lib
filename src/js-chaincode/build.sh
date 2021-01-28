@@ -13,6 +13,11 @@ echo "======== Verify Env Variables ========"
 echo "CC_REPO_DIR: $CC_REPO_DIR"
 ls -agln "$CC_REPO_DIR"
 
+# if the deploy_config JSON passed as environment, override the corresponding file in the chaincode dir
+if [ -n "${DEPLOY_CONFIG}" ]; then
+  jq -n "${DEPLOY_CONFIG}" |tee ${CONFIGPATH}
+fi
+
 echo "======== Download dependencies ========"
 setup_env
 install_python "${PYTHON_VERSION}"
